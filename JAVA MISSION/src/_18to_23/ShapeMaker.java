@@ -67,9 +67,12 @@ public class ShapeMaker {
 			
 			System.out.println("넓이 : " + area);
 			System.out.println("둘레 : " + round);
-			System.out.println("넓이 총합 : " + areaSum);
-			System.out.println("둘레 총합 : " + roundSum);
-		}
+
+		}			
+		
+		System.out.println("넓이 총합 : " + areaSum);
+		System.out.println("둘레 총합 : " + roundSum);
+		sc.close();
 	}
 	
 }
