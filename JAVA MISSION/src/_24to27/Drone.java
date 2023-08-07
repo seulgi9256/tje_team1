@@ -21,13 +21,13 @@ public class Drone implements RemoteControl {
 			this.speed = RemoteControl.MAX_SPEED;
 		}
 		// 속도 최솟값을 넘지 못하게 지정
-		else if ( volume < RemoteControl.MIN_VOLUME) {
-			this.volume = RemoteControl.MIN_VOLUME;
+		else if ( speed < RemoteControl.MIN_SPEED) {
+			this.speed = RemoteControl.MIN_SPEED;
 		}
 		else {
-			this.volume = volume;
+			this.speed = speed;
 		}
-		System.out.println("현재 TV 볼륨 : " + this.volume);
+		System.out.println("현재 Drone 속도 : " + this.speed);
 		
 	}
 	
