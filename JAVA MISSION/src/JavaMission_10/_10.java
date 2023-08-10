@@ -1,4 +1,4 @@
-package _10;
+package JavaMission_10;
 import java.util.Scanner;
 
 public class _10 {
