@@ -1,4 +1,4 @@
-package _03;
+package JavaMission_03;
 
 public class ThreeSixNine {
 	public static void main(String[] args) {

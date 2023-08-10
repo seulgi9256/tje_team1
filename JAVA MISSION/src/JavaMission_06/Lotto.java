@@ -1,4 +1,4 @@
-package _06;
+package JavaMission_06;
 
 import java.lang.reflect.Array;
 import java.util.Scanner;

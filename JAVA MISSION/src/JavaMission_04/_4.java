@@ -1,4 +1,4 @@
-package _04;
+package JavaMission_04;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package _30;
+package JavaMission_30;
 
 import java.util.Scanner;
 

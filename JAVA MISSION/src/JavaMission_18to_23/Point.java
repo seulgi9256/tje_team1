@@ -1,4 +1,4 @@
-package _18to_23;
+package JavaMission_18to_23;
 
 public class Point {
 	int x, y;

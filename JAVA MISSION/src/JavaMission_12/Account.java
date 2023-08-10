@@ -1,4 +1,4 @@
-package _12;
+package JavaMission_12;
 
 public class Account {
     // 잔고 직접 지정과 입금 및 출금은 허용된 금액 범위에서만 적용 가능
