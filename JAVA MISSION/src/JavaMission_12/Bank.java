@@ -1,4 +1,4 @@
-package _12;
+package JavaMission_12;
 
 import java.util.Scanner;
 
