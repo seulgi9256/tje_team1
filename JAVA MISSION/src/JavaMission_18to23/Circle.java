@@ -1,4 +1,4 @@
-package JavaMission_18to_23;
+package JavaMission_18to23;
 
 public class Circle extends Shape{
 	double radius;
