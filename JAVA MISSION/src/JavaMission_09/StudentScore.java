@@ -517,7 +517,7 @@ public class StudentScore {
 	            }
 	        }
 	    }
-		
+
 	    for (int i = 0; i < allStudents.length; i++) {
 	        int stnum = allStudents[i][1];
 	        int rank = i + 1;

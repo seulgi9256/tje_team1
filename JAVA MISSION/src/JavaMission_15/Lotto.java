@@ -73,12 +73,3 @@ public class Lotto { // 실제로 사용하는 코드 만들기
     }	
 		
 }
-
-//LottoBoard board1 = LottoBoard.getInstance();
-//LottoBoard board2 = LottoBoard.getInstance();
-//
-//System.out.println("board1: " + board1.getNumbers());// 로또 번호 6개 가지고 옴
-//System.out.println("board2: " + board2.getNumbers());
-//
-//// Check if the same instance is being used
-//System.out.println("확인 " + (board1 == board2));

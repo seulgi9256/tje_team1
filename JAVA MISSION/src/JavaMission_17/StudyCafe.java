@@ -2,7 +2,7 @@ package JavaMission_17;
 
 import java.util.Scanner;
 
-public class StudyCafe {
+public class StudyCafe2 {
 	static Scanner sc = new Scanner(System.in);
 	
 	static String seat1[][] = new String[4][10];
