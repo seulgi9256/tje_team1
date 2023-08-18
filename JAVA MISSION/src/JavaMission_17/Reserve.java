@@ -1,13 +1,26 @@
 package JavaMission_17;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Reserve {
 	int number; // 수강번호
 	int floor; // 층수
 	int seatNo; // 좌석번호
 	boolean reserved; // 예약상태
 	
+	static Set<Integer> seatNumber = new HashSet<Integer>();
+	
+	public static Set<Integer> getSeatNumber() {
+		return seatNumber;
+	}
+
+	public static void setSeatNumber(Set<Integer> seatNumber) {
+		Reserve.seatNumber = seatNumber;
+	}
+
 	public Reserve() {
-		this(0, 0, 0, false);
+		this(0, 0, 0, true);
 	}
 
 	public Reserve(int number, int floor, int seatNo, boolean reserved) {
@@ -49,7 +62,7 @@ public class Reserve {
 		this.reserved = reserved;
 	}
 
-	
+	@Override
 	public String toString() {
 		return "Reserve [number=" + number + ", floor=" + floor + ", seatNo=" + seatNo + ", reserved=" + reserved + "]";
 	}
@@ -61,7 +74,5 @@ public class Reserve {
 	
 	public void cancle(int seatNo) {
 			reserved = false;
-		
-	
 	}
 }
