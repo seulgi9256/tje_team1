@@ -8,7 +8,7 @@ import java.util.List;
 public class LottoBoard {
 
 	// 클래스 내부에 static으로 유일한 인스턴스 생성
-	private static LottoBoard instance = new LottoBoard(Auto);
+	private static LottoBoard instance = new LottoBoard();
 	
 	private List<Integer> numbers;
 	private boolean Auto;
@@ -17,16 +17,19 @@ public class LottoBoard {
     private static final int MAX_NUMBER = 45;
     private static final int NUMBERS_PER_TICKET = 6;
 	
-	private LottoBoard(boolean Auto) { // private 생성자 만들기
-		this.Auto = Auto;
-		if(Auto) {
-			generateNumbers(); // 자동
-		}
-		else {
-			Manually();//수동
-		}
-		Rank(); //당첨번호 조회
-			}
+    private LottoBoard() {
+    	
+    }
+//	private LottoBoard(boolean Auto) { // private 생성자 만들기
+//		this.Auto = Auto;
+//		if(Auto) {
+//			generateNumbers(); // 자동
+//		}
+//		else {
+//			Manually();//수동
+//		}
+//		Rank(); //당첨번호 조회
+//			}
 	
 	
 	public LottoBoard(List<Integer> numbers, boolean auto) {
@@ -75,7 +78,8 @@ public class LottoBoard {
 	// 외부에서 참조할 수 있는 pulic 메소드 정의
 	public static LottoBoard getInstance() {
 		if(instance == null) {
-			instance = new LottoBoard(false);
+//			instance = new LottoBoard(false);
+			instance = new LottoBoard();
 		}
 		return instance;
 	}
