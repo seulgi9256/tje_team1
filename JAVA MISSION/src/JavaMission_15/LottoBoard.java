@@ -10,33 +10,34 @@ public class LottoBoard {
 	// 클래스 내부에 static으로 유일한 인스턴스 생성
 	private static LottoBoard instance = new LottoBoard();
 	
-	private List<Integer> numbers;
+	private List<Integer> numbers = new ArrayList<>();;
 	private boolean Auto;
 	
 	private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int NUMBERS_PER_TICKET = 6;
 	
-    private LottoBoard() {
-    	
-    }
-//	private LottoBoard(boolean Auto) { // private 생성자 만들기
-//		this.Auto = Auto;
-//		if(Auto) {
-//			generateNumbers(); // 자동
-//		}
-//		else {
-//			Manually();//수동
-//		}
-//		Rank(); //당첨번호 조회
-//			}
-	
+	private LottoBoard(boolean Auto) { // private 생성자 만들기
+		this.Auto = Auto;
+		if(Auto) {
+			generateNumbers(); // 자동
+		}
+		else {
+			Manually(); //수동
+		}
+		Rank(); //당첨번호 조회
+	}
 	
 	public LottoBoard(List<Integer> numbers, boolean auto) {
 		super();
 		this.numbers = numbers;
 		Auto = auto;
 	}
+
+	public LottoBoard() {
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public boolean isAuto() {
 		return Auto;
@@ -46,8 +47,6 @@ public class LottoBoard {
 	 * 자동 번호 생성
 	 * */
 	private void generateNumbers() {
-	   numbers = new ArrayList<>();
-	
 	   for (int i = MIN_NUMBER; i <= MAX_NUMBER; i++) {
 	        numbers.add(i);
 	   }
@@ -78,8 +77,7 @@ public class LottoBoard {
 	// 외부에서 참조할 수 있는 pulic 메소드 정의
 	public static LottoBoard getInstance() {
 		if(instance == null) {
-//			instance = new LottoBoard(false);
-			instance = new LottoBoard();
+			instance = new LottoBoard(false);
 		}
 		return instance;
 	}
