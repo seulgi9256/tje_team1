@@ -3,16 +3,16 @@ package JavaMission_12;
 public class Account {
     // 잔고 직접 지정과 입금 및 출금은 허용된 금액 범위에서만 적용 가능
 
-    String accountNumber;
-    String accountholder;
-    int balance;
-    String password;
-
     final int MIN_BALANCE = 0;
     final int MAX_BALANCE = 1000000000; // 10억원
     final int MIN_TRANSFER = 1;
     final int MAX_TRANSFER = 1000000; // 100만원
 
+    String accountNumber;
+    String accountholder;
+    int balance;
+    String password;
+    
     public Account() {
         this("계좌없음", "이름없음", 0);
     }
@@ -72,7 +72,7 @@ public class Account {
     public int deposit(int deposit){
         if(balance>MAX_BALANCE) {
             System.out.println("하나의 계좌에 10억원 이상 예금 할 수 없습니다.");
-            return 0;
+            return balance;
         }
         else {
         	return balance += deposit;
@@ -80,13 +80,13 @@ public class Account {
     }
 
     public int withdraw(int withdraw){
-    	int check = 0;
+    	//int check = 0;
         if(balance<withdraw) {
             System.out.println("잔고가 부족합니다.");
-            return 0;
+            return balance;
         }
         else{
-            check = 1;
+           // check = 1;
             return balance -= withdraw;
         }
     }

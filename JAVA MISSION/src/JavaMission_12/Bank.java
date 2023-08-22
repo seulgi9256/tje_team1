@@ -8,6 +8,8 @@ public class Bank {
 	static Scanner sc = new Scanner(System.in);
 	static String adminPassword ="1111";
 	static int index = 0;
+	static int balance;
+	static Account account = new Account();
 
 	// 메뉴
 	public static void menu() {
@@ -18,48 +20,42 @@ public class Bank {
 	
 	// 계좌등록
 	public static void joinAccount() {
-		Account account1 = new Account();
-
 		
 		System.out.print("계좌번호>> ");
 		String accountNo = sc.next();
-		account1.setAccountNumber(accountNo);
+		account.setAccountNumber(accountNo);
 		
 		System.out.print("예금주>> ");
 		String accountholder = sc.next();
-		account1.setAccountholder(accountholder);
+		account.setAccountholder(accountholder);
 		
 		System.out.print("최초예금액>> ");
 		int deposit = sc.nextInt();
-		account1.deposit(deposit);
+		account.deposit(deposit);
 		
 		System.out.print("비밀번호>> ");
 		String password = sc.next();
-		account1.setPassword(password);
+		account.setPassword(password);
 		
-		account1 = new Account(accountNo, accountholder, deposit, password);
-		accountList[index++] = account1;
+		accountList[index++] = account;
 		
-		System.out.println(account1.getAccountholder() + "님의 계좌가 개설되었습니다.");
+		System.out.println(account.getAccountholder() + "님의 계좌가 개설되었습니다.");
 	}
 	
 	// 입금
 	public static void deposit() {
-		Account account2 = new Account();
 		System.out.println("=============================입금===========================");
 
 		System.out.print("계좌번호>> ");
 		String accountNo = sc.next();
 
-		System.out.println("체크 : " + accountList[0].accountNumber + " " + accountNo);
-		
 		for (int i = 0; i < accountList.length; i++) {
 			if(accountList[i].accountNumber.equals(accountNo) && accountList[i]!=null) {
 				System.out.print("입금액>> ");
 				int money = sc.nextInt();
 				
-				int balance = account2.deposit(money);
-				accountList[i].balance=balance;
+				balance = account.deposit(money);
+				accountList[i].balance = balance;
 				
 				System.out.println("'" + accountList[i].getAccountholder() +"' 님에게 입금하는게 맞으십니까?");
 				System.out.println("1. 예\n2. 아니오");
@@ -77,14 +73,10 @@ public class Bank {
 	
 	// 출금
 	public static void withdraw() {
-		Account account3 = new Account(); // 클래스 객체 생성
-		int check = 0;
 		System.out.println("=============================출금===========================");
 		
 		System.out.print("계좌번호>> ");
 		String accountNo = sc.next();
-		
-		//System.out.println("체크 : " + accountList[0].accountNumber + " " + accountNo);
 		
 		for (int i = 0; i < accountList.length; i++) {
 			if(accountList[i].accountNumber.equals(accountNo) && accountList[i]!=null) {
@@ -95,14 +87,11 @@ public class Bank {
 					System.out.print("출금액>> ");
 					int money = sc.nextInt();
 					
-					int balance = account3.withdraw(money);
-					accountList[i].balance=balance;
+					balance = account.withdraw(money);
+					accountList[i].balance = balance;
 					
-					if(check==1) {
 					System.out.println("'" + accountList[i].getAccountholder() + "' 님의 계좌에 " + money + " 원이 출금되었습니다.");
 					break;
-					}
-					else break;
 				}
 			
 				else {
