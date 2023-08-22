@@ -1,117 +1,129 @@
 package JavaMission_15;
 
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAdjusters;
-import java.util.Date;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Lotto { // 실제로 사용하는 코드 만들기
+
+public static void main(String[] args) {
+	LottoBoard board = LottoBoard.getInstance(); //싱글톤 패턴 구현
 	
-	public static void main(String[] args) {
-		LottoBoard board = LottoBoard.getInstance(); //싱글톤 패턴 구현
-		
-		Date now = new Date();
-		LocalDateTime now2 = LocalDateTime.now();
-		SimpleDateFormat date = new SimpleDateFormat();
-		SimpleDateFormat date2 = new SimpleDateFormat();
-		LocalDateTime pd = LocalDateTime.now();
-		date = new SimpleDateFormat("yyyy/MM/dd일 (E) HH:mm:ss");
-		date2 = new SimpleDateFormat("yyyy/MM/dd일 (E)");
-		
-		String dataFormat = date.format(now);
-		
-		LocalDateTime targetTime = pd.plusYears(1).plusDays(1); // 1년과 1일 후의 LocalDateTime 계산
-		Date targetDate = Date.from(targetTime.atZone(ZoneId.systemDefault()).toInstant()); // LocalDateTime을 Date로 변환
-		String targetdate = date2.format(targetDate); // 포맷팅
-		
-		// 다음 추첨일을 확인 (매번 다음주 토요일 출력하는 거 같음)
-		LocalDateTime nextSaturday = now2.with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).withHour(21).withMinute(0).withSecond(0);
-        String nextdate = date.format(Date.from(nextSaturday.atZone(ZoneId.systemDefault()).toInstant()));
-        System.out.println(now2.until(nextSaturday, ChronoUnit.DAYS));
+	List<Integer> lottoList = new ArrayList<>();
+	List<Integer> result = new ArrayList<>();
+	List<String> isAuto = new ArrayList<>();
+	List<Integer> A_S = new ArrayList<>();
+	
+	Scanner sc = new Scanner(System.in);
+	
 
+	System.out.print("몇 게임? ");
+	int N = sc.nextInt();
+	
+	if(N>=6) { 
+		System.out.println("최대 5게임까지만 가능합니다.");
+	}
+	else {
+	// 게임 번호 선택하는 부분
+	for(int i = 0; i < N; i++) {
+	System.out.print("[" + (i+1) + "] 게임 ");
+	System.out.print("(1.자동 / 2.수동) : ");
+	int Auto = sc.nextInt();
+	
+	A_S.add(Auto);
+	
+	switch(Auto) {
+	case 1 : // 자동
+		board.resetNumbers();
+		lottoList = board.getNumbers();
+		System.out.println(lottoList);
 		
-		Scanner sc = new Scanner(System.in);
-		System.out.print("몇 게임? ");
-		int N = sc.nextInt();
+		result.addAll(lottoList);
+		break;
 		
-		// 게임 번호 선택하는 부분
-		for(int i = 0; i < N; i++) {
-		System.out.print("[" + (i+1) + "] 게임 ");
-		System.out.print("(1.자동 / 2.수동) : ");
-		int Auto = sc.nextInt();
-		//board.isAuto();
-		switch(Auto) {
-		case 1 : // 자동
-			if(board.isAuto()) {
-				List<Integer> autoNumbers = board.getNumbers(); // 자동 번호 얻기
-	            System.out.println("자동 번호: " + autoNumbers);
-			}
-			break;
-		case 2 : // 수동
-			for (int j = 0; j < 6; j++) {
-				
-			}
+	case 2 : // 수동
+		List<Integer> numbers2 = new ArrayList<>();
+		int n = 1;
+	        for(int y=0; y<6; y++) {
+				char circleNumber = (char) (0x245F + n++);
+		
+				System.out.print(circleNumber + " : ");
 			
-			break;
-		}
-		}
-		
-		boolean isAuto = board.isAuto();
-        System.out.println("Auto 값: " + isAuto);
+		        int value = sc.nextInt();
+		        numbers2.add(value);
+	        }
+			Collections.sort(numbers2);
+			   	
+			System.out.println(numbers2.subList(0, 6));
+			result.addAll(numbers2);
+		break;
+	}
+}
+	// 로또 용지 부분
+	System.out.println("########## 인생역전 Lottoria ##########");
+	board.Date(); // 발행일 + 추첨일 + 지급기한
+	
+	System.out.println("-------------------------------------");
 
-		// 로또 용지 부분
-		System.out.println("########## 인생역전 Lottoria ##########");
-		System.out.println("발행일  \t : " + date.format(now) ); //날짜);
-		System.out.println("추첨일  \t : " + nextdate );
-		System.out.println("지급기한 \t : " + targetdate );
-		System.out.println("-------------------------------------");
-		
-		char ch = 'A';
-		for (int i = 0; i < N; i++) {
-			System.out.println(ch++ + " ");
-			// 자동인지 수동인지
-//			System.out.println(board.getNumbers()); // 싱글톤클래스에서 번호 가져오기
-			
-		}
-		
-		System.out.println("-------------------------------------");
-		System.out.print("금액");
-//		String money = String.format("%,d", Integer.parseInt("1000"));
-//		money = String.format("%,d", money);
-//		String money2 = Integer.toString(Integer.parseInt(money)*N);
-//		System.out.print("\\" + money2); //오른쪽 정렬은 어떻게 하지?
-		String moneyFormatted = "1,000";
-		String moneyCleaned = moneyFormatted.replace(",", "");
-		int moneyInt = Integer.parseInt(moneyCleaned);
-		String money2 = Integer.toString(moneyInt * N);
-		System.out.print("                             ￦" + money2);
-		
-		System.out.println();
-		System.out.println("#####################################");
-		System.out.println();
-		
-		// 당첨번호 출력
-		System.out.println("당첨 번호 : ");
-		// 보너스 번호 출력
-		System.out.println("보너스 번호 : ");
-		
-		System.out.println();
-		// 당첨 결과 출력
-		ch = 'A';
-		System.out.println("############## 당첨 결과 ###############");
-		for (int i = 0; i < N; i++) {
-			System.out.print(ch++ + " ");
-			System.out.print(" "); // 자동 수동 여부
-			System.out.print(""); // 위에서 발생한 번호 가져오기
-			System.out.println(); // 보드에서 당첨 결과 가지고 오기
-		}
-		System.out.println("#####################################");
-		
-    }	
-		
+	char ch = 'A';
+      for (int z = 0; z < N; z++) {
+         System.out.print(ch++ + " ");
+         List<Integer> check = result.stream().skip(z * 6).limit(6).collect(Collectors.toList());
+         if(A_S.get(z) == 1) {
+            System.out.println("[자동] " + check);
+         } else {
+            System.out.println("[수동] " + check);
+         }
+         // 자동인지 수동인지
+      }
+	
+	System.out.println();	
+	
+	System.out.println("-------------------------------------");
+    System.out.print("금액");
+
+    int money = 1000 * N;
+    DecimalFormat df = new DecimalFormat("###,###");
+    String money2 = df.format(money);
+    System.out.print("                           ￦" + money2);
+
+    System.out.println();
+    System.out.println();
+    System.out.println("#####################################");
+	
+	// 당첨번호 출력
+	System.out.print("당첨 번호 : ");
+	List<Integer> Winning = new ArrayList<>();
+	Winning = board.winNumber();
+	System.out.println();
+	
+	// 보너스 번호 출력
+	System.out.print("보너스 번호 : ");
+	int bonus = board.bonusNumber();
+	System.out.println(bonus);
+	
+	// 당첨 결과 출력
+	System.out.println("############## 당첨 결과 ##############");
+
+	char charc = 'A';
+    for (int z = 0; z < N; z++) {
+       System.out.print(charc++ + " ");
+       
+       List<Integer> check = result.stream().skip(z * 6).limit(6).collect(Collectors.toList());
+       if(A_S.get(z) == 1) {
+          System.out.print("[자동] " + check + " ");
+          board.Rank(Winning ,bonus, result);
+       } else {
+          System.out.print("[수동] " + check  + " ");
+      	  board.Rank(Winning ,bonus, result);
+       }
+}	
+	sc.close();	
+    System.out.println("####################################");
+	}
+
+}
 }

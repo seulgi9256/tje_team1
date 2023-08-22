@@ -10,9 +10,8 @@ public class _4 {
 		
 		Scanner sc = new Scanner(System.in);
 		int N = sc.nextInt();
-		
 
-		for(int i = 0; i < N; i++) {
+		for(int i = 0; i < N; i++) { // 빈칸은 N-1씩
 			
 			for(int j=0; j<num; j++) {
 				System.out.print("*");

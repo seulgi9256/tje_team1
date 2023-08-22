@@ -56,7 +56,7 @@ public class StudyCafe {
 			} System.out.println();
 		}
 		System.out.println("====================================");
-		System.out.println("이용가능 : " + (left-count1) + "석");
+		System.out.println("                        이용가능 : " + (left-count1) + "석");
 	}
 	
 	public static void ViewSeat2() {
@@ -72,7 +72,7 @@ public class StudyCafe {
 			} System.out.println();
 		}
 		System.out.println("====================================");
-		System.out.println("이용가능 : " + (left-count2) + "석");
+		System.out.println("                       이용가능 : " + (left-count2) + "석");
 	}
 	
 	public static void ViewSeat3() {
@@ -88,7 +88,7 @@ public class StudyCafe {
 			} System.out.println();
 		}
 		System.out.println("====================================");
-		System.out.println("이용가능 : " + (left-count3) + "석");
+		System.out.println("                       이용가능 : " + (left-count3) + "석");
 	}
 	
 	public static void use() {

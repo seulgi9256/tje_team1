@@ -84,7 +84,7 @@ public class Bank {
 		System.out.print("계좌번호>> ");
 		String accountNo = sc.next();
 		
-		System.out.println("체크 : " + accountList[0].accountNumber + " " + accountNo);
+		//System.out.println("체크 : " + accountList[0].accountNumber + " " + accountNo);
 		
 		for (int i = 0; i < accountList.length; i++) {
 			if(accountList[i].accountNumber.equals(accountNo) && accountList[i]!=null) {
